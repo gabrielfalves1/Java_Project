@@ -39,6 +39,7 @@ ArrayList<Funcionario> lista = (ArrayList<Funcionario>) request.getAttribute("fu
       <td><%=lista.get(i).getNome()%></td>
       <td><%=lista.get(i).getCpf()%></td> 
        <td><a href="selecionado?fun_id=<%=lista.get(i).getFun_id()%>"><button type="button" class="btn tbn-primary">Editar</button></a> </td>
+     <td><a href="excluir?fun_id=<%=lista.get(i).getFun_id()%>"><button type="button" class="btn tbn-primary">Excluir</button></a> </td>
     </tr>
     
     <%} %>

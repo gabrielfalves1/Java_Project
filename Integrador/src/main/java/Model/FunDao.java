@@ -17,10 +17,10 @@ public class FunDao {
 
 		try {
 			con = new Conex().conectar();
-			String sql = "INSER INTO funcionario (nome, cpf) VALUES (?,?)";
+			String sql = "INSERT INTO funcionario (nome, cpf) VALUES (?,?)";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, fun.getNome());
-			stmt.setInt(2, fun.getCpf());
+			stmt.setString(2, fun.getCpf());
 			stmt.executeUpdate();
 			con.close();
 
@@ -42,7 +42,7 @@ public class FunDao {
 			while (rs.next()) {
 				fun.setFun_id(rs.getInt("fun_id"));
 				fun.setNome(rs.getString("nome"));
-				fun.setCpf(rs.getInt("cpf"));
+				fun.setCpf(rs.getString("cpf"));
 				fun.setTelefone(rs.getString("tel"));
 				fun.setEndereco(rs.getString("endereco"));
 				
@@ -62,15 +62,15 @@ public class FunDao {
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				int fun_id = rs.getInt(1);
-				String nome = rs.getString(2);
-				String idade = rs.getString(3);
-				int cpf = rs.getInt(4);
-				String telefone = rs.getString(5);
-				String endereco = rs.getString(6);
-				String entrada = rs.getString(7);
+				int fun_id = rs.getInt("fun_id");
+				String nome = rs.getString("nome");
+				String data_nasc = rs.getString("data_nascimento");
+				String cpf = rs.getString("cpf");
+				String telefone = rs.getString("tel");
+				String endereco = rs.getString("endereco");
+				String entrada = rs.getString("entrada");
 
-				funs.add(new Funcionario(fun_id, nome, idade, cpf, telefone, endereco, entrada));
+				funs.add(new Funcionario(fun_id,nome,data_nasc,cpf,telefone,endereco,entrada));
 			}
 
 			return funs;
@@ -105,5 +105,29 @@ public class FunDao {
 		}
 
 	}
+	
+	public void Excluir(Funcionario fun) {
+		
+		try {
+			con = new Conex().conectar();
+			String sql = "DELETE FROM funcionario WHERE fun_id = ?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1, fun.getFun_id());
+			
+			stmt.executeUpdate();
+			con.close();
+			
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 
 }

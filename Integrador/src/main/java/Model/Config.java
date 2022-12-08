@@ -1,7 +1,9 @@
 package Model;
 
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
+
 
 public class Config {
 
@@ -23,6 +25,9 @@ public class Config {
 
 	}
 
+
+
+	
 	
 	
 	

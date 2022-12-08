@@ -36,6 +36,7 @@ public class AdmController extends HttpServlet {
 
 		if (action.equals("/login-admin")) {
 			validaAdmin(request, response);
+			
 		} else if (action.equals("/logout")) {
 			logout(request, response);
 		}
